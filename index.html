@@ -288,6 +288,44 @@ a:hover{color:var(--acc-alt,var(--sw-6f8f7e,#6f8f7e))}
             </sc-if>
         </div>
       </article>
+
+      <article style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(18px,3vw,32px);align-items:center">
+        <div data-reveal="1" style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px">
+            <h3 style="margin:0;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(28px,3.6vw,36px);line-height:1.05;color:var(--acc-head,#b88fc0);text-shadow:1px 2px 2px rgba(110,70,110,0.2)">TomoNook</h3>
+            <span style="font-style:italic;font-size:14px;color:var(--acc-label,#9a6fa5)">Full-stack Developer | UI/UX Designer</span>
+          </div>
+          <p style="margin:0;font-style:italic;font-size:16px;line-height:1.45;color:var(--acc-alt,var(--sw-6f8f7e,#6f8f7e))">A cozy little nook to plan your day, with a tomato friend who reacts to how you’re doing.</p>
+          <p style="margin:0;font-size:14.5px;line-height:1.7;color:#5e3f68;text-wrap:pretty">A tomato-themed productivity web app that brings a to-do list, mood tracker, timers, and weather into one dashboard. Users build their own tomato avatar from layered, recolorable hand-drawn art, then keep it company by finishing tasks, logging moods to keep a streak alive, and running pomodoro sessions. Two gossip tomatoes wander between tabs chatting about the user in gibberish voices, and settings like gentle mode, reduced motion, and data backup keep the experience comfortable.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px">
+            <span style="font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--sw-a2bcad,#a2bcad);color:#ffffff;white-space:nowrap">TypeScript</span>
+            <span style="font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--sw-a2bcad,#a2bcad);color:#ffffff;white-space:nowrap">React</span>
+            <span style="font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--sw-a2bcad,#a2bcad);color:#ffffff;white-space:nowrap">Vite</span>
+            <span style="font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--sw-a2bcad,#a2bcad);color:#ffffff;white-space:nowrap">Zustand</span>
+            <span style="font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--sw-a2bcad,#a2bcad);color:#ffffff;white-space:nowrap">Node</span>
+            <span style="font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--sw-a2bcad,#a2bcad);color:#ffffff;white-space:nowrap">Express</span>
+            <span style="font-size:12px;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--sw-a2bcad,#a2bcad);color:#ffffff;white-space:nowrap">Open-Meteo API</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:6px">
+            <a href="https://github.com/MartonieAyaay/TomoNook" target="_blank" rel="noopener noreferrer" style="font-family:'Young Serif',serif;font-weight:400;font-size:15px;padding:8px 22px;border-radius:999px;background:transparent;border:1.5px solid var(--sw-a2bcad,#a2bcad);color:var(--sw-557f6b,#557f6b);white-space:nowrap" style-hover="background:var(--sw-a2bcad,#a2bcad);color:#ffffff">Repository</a>
+            <a href="https://tomonook.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:7px;font-family:'Young Serif',serif;font-weight:400;font-size:15px;padding:8px 22px;border-radius:999px;background:transparent;border:1.5px solid var(--sw-a2bcad,#a2bcad);color:var(--sw-557f6b,#557f6b);white-space:nowrap" style-hover="background:var(--sw-a2bcad,#a2bcad);color:#ffffff">Open<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
+          </div>
+        </div>
+        <div data-reveal="1" data-media-box="1" style="border-radius:10px;overflow:hidden;background:var(--sw-8fb59d,#8fb59d);color:#ffffff;box-shadow:4px 6px 14px rgba(0,0,0,0.2);aspect-ratio:4/3;position:relative">
+          <sc-if value="{{ tomonookMedia.isVideoFile }}" hint-placeholder-val="{{ false }}">
+              <video src="{{ tomonookMedia.url }}" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#2c2c2c"></video>
+            </sc-if>
+            <sc-if value="{{ tomonookMedia.isEmbed }}" hint-placeholder-val="{{ false }}">
+              <iframe src="{{ tomonookMedia.embed }}" referrerPolicy="strict-origin-when-cross-origin" title="TomoNook" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen="allowfullscreen" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+            </sc-if>
+            <sc-if value="{{ tomonookMedia.isImage }}" hint-placeholder-val="{{ false }}">
+              <div role="img" aria-label="TomoNook" style="position:absolute;inset:0;background-image:{{ tomonookMedia.bg }};background-size:cover;background-position:center"></div>
+            </sc-if>
+            <sc-if value="{{ tomonookMedia.isEmpty }}" hint-placeholder-val="{{ true }}">
+              <image-slot id="tomonook-shot" shape="rounded" radius="10" placeholder="this will have a screenshot of the system to be added" style="position:absolute;inset:0;width:100%;height:100%;display:block"></image-slot>
+            </sc-if>
+        </div>
+      </article>
       </div>
       </sc-if>
       <sc-if value="{{ isGraphics }}" hint-placeholder-val="{{ false }}">
@@ -536,7 +574,7 @@ a:hover{color:var(--acc-alt,var(--sw-6f8f7e,#6f8f7e))}
   <a href="#top" onClick="{{ scrollTop }}" ref="{{ topBtnRef }}" style="position:fixed;right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,28px);z-index:50;font-family:'Young Serif',serif;font-weight:400;font-size:15px;padding:10px 20px;border-radius:999px;background:var(--acc-fill,var(--sw-e893bf,#e893bf));color:#ffffff;box-shadow:0 8px 20px rgba(111,143,126,0.3);white-space:nowrap;opacity:0;pointer-events:none;transform:translateY(24px);transition:opacity 380ms cubic-bezier(.22,.61,.36,1),transform 380ms cubic-bezier(.22,.61,.36,1)" style-hover="background:var(--acc-fill-hover,var(--sw-db7cae,#db7cae));color:#ffffff">Back to top ↑</a>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;reveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;driftClouds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;pixeldermClip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;studyclickClip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;signal5Clip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;logoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Graphics media&quot;},&quot;signalLogoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Graphics media&quot;},&quot;avpUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Graphics media&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;reveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;driftClouds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;pixeldermClip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;studyclickClip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;signal5Clip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;tomonookClip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;tomonookClip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Program clips&quot;},&quot;logoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Graphics media&quot;},&quot;signalLogoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Graphics media&quot;},&quot;avpUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Graphics media&quot;}}">
 class Component extends DCLogic {
   rootRef = React.createRef();
   topBtnRef = React.createRef();
@@ -1031,6 +1069,7 @@ class Component extends DCLogic {
       pixeldermMedia: this.media(this.props.pixeldermClip || "assets/pixelderm-clip.mp4", true),
       studyclickMedia: this.media(this.props.studyclickClip || "assets/studyclick-clip.mp4", true),
       signal5Media: this.media(this.props.signal5Clip || "assets/signal5-clip.mp4", true),
+      tomonookMedia: this.media(this.props.tomonookClip || "assets/tomonook-clip.mp4", true),
       logoMedia: this.media(this.props.logoUrl || "assets/pixelderm-logo-clean.png"),
       signalLogoMedia: this.media(this.props.signalLogoUrl || "assets/signal5-logo-clean.png"),
       avpMedia: this.media(this.props.avpUrl || "https://youtu.be/mOF1thqkOwI"),
