@@ -76,6 +76,8 @@ ul{margin:0;padding:0}
   box-shadow:inset 0 4px 43.1px 7px rgba(255,255,255,.77),0 19px 17.3px rgba(0,0,0,.26);
   opacity:0;transform:translateY(-24px) scale(.97);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.9,.3,1.2),box-shadow .2s;
 }
+.notifs{display:contents}
+.notif-fun{top:409px}
 .notif.is-in{opacity:1;transform:none}
 .notif:hover{box-shadow:inset 0 4px 43.1px 7px rgba(255,255,255,.9),0 22px 24px rgba(0,0,0,.3)}
 .notif-ico{position:absolute;left:19px;top:22px;width:62px;height:62px;border-radius:10px;background:#6f4141;box-shadow:inset 4.38px 4.38px 110.96px 32.83px rgba(0,0,0,.25)}
@@ -205,13 +207,13 @@ ul{margin:0;padding:0}
 .tab[aria-selected="true"]::before{content:"";position:absolute;z-index:-1;left:-24px;top:-18px;width:197px;height:197px;background:url(assets/ui/lace-tab.webp) center/100% 100% no-repeat;pointer-events:none}
 .tab:not([aria-selected="true"]):hover{background:rgba(58,20,20,.4)}
 .panel{position:absolute;left:49px;top:209px;width:1080px;height:497px;background:#fff;border:3px solid #000;border-radius:0 0 15px 15px;overflow:hidden}
-.panel-scroll{height:100%;overflow-x:hidden;overflow-y:auto;padding:0 30px 28px 16px;scrollbar-color:var(--ink) transparent}
+.panel-scroll{height:100%;overflow-x:hidden;overflow-y:auto;padding:6px 30px 28px 30px;scrollbar-color:var(--ink) transparent}
 .proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:32px;align-items:center;padding-bottom:30px;text-shadow:3.24px 3.24px 3.24px var(--pink-shadow)}
 .proj:nth-child(even){padding-left:3px}
 .proj:nth-child(even) .proj-text{order:2}
 .proj-head{display:flex;flex-wrap:wrap;align-items:baseline;padding-top:14px}
 .proj-num{flex:none;width:66.2px;font:400 43.87px/1 var(--f-num);text-shadow:3px 3px 3px var(--pink-shadow)}
-.proj-name{margin:0;font:400 43.87px/1.12 var(--f-script);text-shadow:3px 3px 3px var(--pink-shadow)}
+.proj-name{flex:1 1 0;min-width:0;margin:0;font:400 43.87px/1.12 var(--f-script);text-shadow:3px 3px 3px var(--pink-shadow)}
 /* roles sit just under the title, aligned with it, as "Role 1 | Role 2" */
 .proj-roles{flex-basis:100%;margin:-3px 0 4px 66.2px;font:400 19.14px/1.2 var(--f-mono)}
 .proj-roles span+span::before{content:" | "}
@@ -230,7 +232,7 @@ ul{margin:0;padding:0}
 .proj-media.has-video{border:8px solid var(--ink);border-radius:25px}
 .proj-media.has-video.no-stroke{border:0}
 .proj-media.is-logo,.proj-media.is-embed{background:none;overflow:visible}
-.proj-media.is-logo img{object-fit:contain;padding:14px;filter:drop-shadow(4px 4px 12.5px rgba(0,0,0,.25))}
+.proj-media.is-logo img{object-fit:contain;object-position:center;padding:7.5%;filter:drop-shadow(4px 4px 12.5px rgba(0,0,0,.25))}
 .proj-media.is-embed iframe{filter:drop-shadow(4px 4px 12.5px rgba(0,0,0,.25))}
 .proj-media.is-embed{aspect-ratio:16/9}
 .tabpanel[hidden]{display:none}
@@ -275,6 +277,17 @@ ul{margin:0;padding:0}
 /* certificates come two pages of four: scroll down for the second */
 .aw-scroll{position:absolute;inset:0;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.55) transparent}
 .aw-page{position:relative;height:767px;scroll-snap-align:start}
+
+/* ---------- Simple view: no home screen, every section is a card in one scrolling column ---------- */
+html.simple .window{background:none;box-shadow:none}
+html.simple .window:not(.has-ov) .traffic{display:none}
+html.simple .window>.zoom-scroll{scroll-snap-type:y proximity;overscroll-behavior:contain}
+html.simple .window.has-ov>.zoom-scroll{overflow:hidden}
+html.simple .window .zoomer{height:auto;margin:0 auto}
+html.simple .screen:not(.ov){position:relative;display:block;height:767px;margin-bottom:24px;border-radius:24px;overflow:hidden;background:linear-gradient(rgba(196,196,196,.2),rgba(196,196,196,.2)),var(--win);box-shadow:inset 0 2px 44.5px 10px #fff;scroll-snap-align:start;animation:none}
+html.simple #scr-experience{margin-bottom:0}
+/* the Education / Awards overlays cover whatever part of the column is in view */
+html.simple .screen.ov{bottom:auto;top:var(--ovt,0);height:var(--ovh,767px)}
 
 
 .card{position:absolute;left:55px;width:1066px;background:#fff;border:4px solid var(--ink);display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto;column-gap:0}
@@ -393,7 +406,8 @@ html.compact .homebar-hit{width:240px;height:40px}
 html.compact .lock-icon{left:50%;top:44px;margin-left:-9px;width:18px;height:26px}
 html.compact .lock-date{top:84px;font-size:18px}
 html.compact .lock-time{top:104px;font-size:clamp(64px,22vw,96px);line-height:1.15}
-html.compact .notif{left:24px;right:24px;width:auto;top:clamp(200px,36vh,260px);height:auto;min-height:92px;padding:16px 16px 16px 84px}
+html.compact .notifs{display:flex;flex-direction:column;gap:12px;position:absolute;left:24px;right:24px;top:clamp(200px,36vh,260px)}
+html.compact .notif{position:relative;left:auto;top:auto;width:auto;height:auto;min-height:92px;padding:16px 16px 16px 84px}
 html.compact .notif-ico{left:14px;top:18px;width:54px;height:54px}
 html.compact .notif-photo{left:18px;top:8px;width:46px;height:66px}
 html.compact .notif-title,html.compact .notif-body{position:static;display:block;width:auto}
@@ -479,6 +493,11 @@ html.compact .hub-tile{zoom:.4}
 html.compact .hub-item.aw{line-height:24px;gap:6px}
 html.compact .hub-lbl{max-width:150px}
 html.compact .ov{padding:76px 18px 32px}
+html.compact.simple .window>.zoom-scroll{overflow-y:auto;-webkit-overflow-scrolling:touch}
+html.compact.simple .window.has-ov>.zoom-scroll{overflow:hidden}
+html.compact.simple .window .zoomer{height:auto}
+html.compact.simple .screen:not(.ov){display:flex;flex-direction:column;height:auto;overflow:visible;margin-bottom:14px;padding:28px 22px 30px;border-radius:calc(20px / var(--z,1))}
+html.compact.simple #scr-experience{margin-bottom:0}
 html.compact .aw-scroll{position:static;overflow:visible;scroll-snap-type:none}
 html.compact .aw-page{height:auto;display:flex;flex-direction:column;gap:16px}
 html.compact .aw-page+.aw-page{margin-top:16px}
@@ -563,12 +582,20 @@ html.compact .ed-save{width:44px;height:44px}
       <img class="lock-icon" src="assets/ui/lock.svg" alt="">
       <p class="lock-date" data-date>Wed Nov 4</p>
       <p class="lock-time" data-clock="lock">00:00</p>
-      <button class="notif" id="notif" type="button">
-        <span class="notif-ico" aria-hidden="true"></span>
-        <img class="notif-photo" src="assets/tonie.png" alt="">
-        <span class="notif-title">Portfolio is ready to view</span>
-        <span class="notif-body">Click this notification to view Martonie Loreign Ayaay’s Portfolio!</span>
-      </button>
+      <div class="notifs">
+        <button class="notif" id="notif" type="button">
+          <span class="notif-ico" aria-hidden="true"></span>
+          <img class="notif-photo" src="assets/tonie.png" alt="">
+          <span class="notif-title">Portfolio is ready to view</span>
+          <span class="notif-body">Click this notification to view Martonie Loreign Ayaay’s Portfolio!</span>
+        </button>
+        <button class="notif notif-fun" id="notif-fun" type="button">
+          <span class="notif-ico" aria-hidden="true"></span>
+          <img class="notif-photo" src="assets/tonie.png" alt="">
+          <span class="notif-title">Fun Portfolio is ready to view</span>
+          <span class="notif-body">Click this notification for a more fun experience with Martonie Loreign Ayaay’s Portfolio!</span>
+        </button>
+      </div>
       </div></div>
     </section>
 
@@ -950,11 +977,17 @@ html.compact .ed-save{width:44px;height:44px}
   var win = document.getElementById('window');
   var home = document.getElementById('home');
   var notif = document.getElementById('notif');
+  var notifFun = document.getElementById('notif-fun');
+  var scroller = win.querySelector('.zoom-scroll');
   var btnPrev = document.getElementById('t-prev');
   var btnNext = document.getElementById('t-next');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var root = document.documentElement;
   var current = null;
+  /* 'simple' (the default): every section in one scrolling column; 'fun': home screen with apps */
+  var mode = 'simple';
+  function setMode(m){ mode = m; root.classList.toggle('simple', m === 'simple'); }
+  setMode('simple');
 
   /* Browser zoom: devicePixelRatio relative to page load, seeded with outer/inner width
      in case the page was opened already zoomed. */
@@ -987,10 +1020,12 @@ html.compact .ed-save{width:44px;height:44px}
       /* keep the zoomed content centred (lock screen) or top-centred (window) */
       document.querySelectorAll('.zoom-scroll').forEach(function(el){
         el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
-        el.scrollTop = el.closest('.lock, .home') ?(el.scrollHeight - el.clientHeight) / 2 : 0;
+        if (el.closest('.lock, .home')) el.scrollTop = (el.scrollHeight - el.clientHeight) / 2;
+        else if (mode !== 'simple') el.scrollTop = 0;
       });
     }
     lastZ = z;
+    placeOv();
   }
   var lastZ = 1;
   window.addEventListener('resize', fit);
@@ -1019,11 +1054,50 @@ html.compact .ed-save{width:44px;height:44px}
       v.controls = reduce.matches;
     });
   }
+  /* simple view: in zoomer px, from the top of the column */
+  function cz(){ return parseFloat(getComputedStyle(root).getPropertyValue('--cz')) || 1; }
+  function scrollToCard(el, smooth){
+    var k = scroller.getBoundingClientRect().height / scroller.offsetHeight || 1;
+    var top = scroller.scrollTop + (el.getBoundingClientRect().top - scroller.getBoundingClientRect().top) / k;
+    scroller.scrollTo({ top: top, behavior: smooth && !reduce.matches ? 'smooth' : 'auto' });
+  }
+  function placeOv(){
+    if (mode !== 'simple') return;
+    var ov = win.querySelector('.screen.ov.is-active');
+    if (!ov) return;
+    ov.style.setProperty('--ovt', (scroller.scrollTop / cz()) + 'px');
+    ov.style.setProperty('--ovh', (scroller.clientHeight / cz()) + 'px');
+  }
+  function showSimple(id, el){
+    var wasOpen = !win.hidden;
+    lock.hidden = true; home.hidden = true; win.hidden = false;
+    var parent = el.dataset.parent ? document.getElementById('scr-' + el.dataset.parent) : null;
+    document.querySelectorAll('.screen').forEach(function(s){
+      s.classList.toggle('is-active', s === el && !!parent);
+      s.classList.remove('is-under');
+      s.inert = !!parent && s !== el;
+    });
+    win.classList.toggle('has-ov', !!parent);
+    current = id;
+    btnPrev.disabled = btnNext.disabled = true;
+    if (parent){
+      scrollToCard(parent, false);
+      placeOv();
+      el.scrollTop = 0;
+      var aw = el.querySelector('.aw-scroll'); if (aw) aw.scrollTop = 0;
+    } else if (id === 'simple' && !wasOpen) scroller.scrollTop = 0;
+    else if (id !== 'simple') scrollToCard(el, wasOpen);
+    setVideos(true);
+    booth.setActive(false);
+  }
   function show(id){
-    if (id === 'home') return showHome();
-    if (id === 'photobooth') return showHome(1);
+    if (id === 'home'){ setMode('fun'); return showHome(); }
+    if (id === 'photobooth'){ setMode('fun'); return showHome(1); }
+    if (id === 'simple') setMode('simple');
     var el = document.getElementById('scr-' + id);
+    if (mode === 'simple') return showSimple(el ? id : 'simple', el || document.getElementById('scr-about'));
     if (!el) id = 'about', el = document.getElementById('scr-about');
+    win.classList.remove('has-ov');
     lock.hidden = true; home.hidden = true; win.hidden = false;
     var under = el.dataset.parent ? document.getElementById('scr-' + el.dataset.parent) : null;
     document.querySelectorAll('.screen').forEach(function(s){
@@ -1057,11 +1131,14 @@ html.compact .ed-save{width:44px;height:44px}
   }
   function showLock(){
     win.hidden = true; home.hidden = true; lock.hidden = false; current = null;
+    win.classList.remove('has-ov');
     if (music) setMusic(false);
     setVideos(false);
     booth.setActive(false);
-    notif.classList.remove('is-in');
+    /* the second banner drops in half a second after the first */
+    notif.classList.remove('is-in'); notifFun.classList.remove('is-in');
     setTimeout(function(){ notif.classList.add('is-in'); }, reduce.matches ? 0 : 900);
+    setTimeout(function(){ notifFun.classList.add('is-in'); }, reduce.matches ? 0 : 1400);
   }
   function route(){
     var id = location.hash.slice(1);
@@ -1125,6 +1202,8 @@ html.compact .ed-save{width:44px;height:44px}
   window.addEventListener('resize', function(){ if (!home.hidden) pager.scrollLeft = page * pager.clientWidth; });
   /* home bar / swipe-up: from an app go home; from a photo back to the photobooth; from the photobooth back to the apps */
   function homeButton(){
+    if (current === null) return go('simple');
+    if (mode === 'simple') return closeOrLock();
     if (current !== 'home') go('home');
     else if (booth.close()) return;
     else if (page !== 0) toPage(0, true);
@@ -1175,8 +1254,14 @@ html.compact .ed-save{width:44px;height:44px}
     });
   });
 
-  notif.addEventListener('click', function(){ go('home'); });
-  document.getElementById('t-close').addEventListener('click', function(){ go('home'); });
+  /* simple view: close an open overlay, otherwise lock the device */
+  function closeOrLock(){
+    var sc = document.getElementById('scr-' + current);
+    if (sc && sc.dataset.parent) go(sc.dataset.parent); else lockDevice();
+  }
+  notif.addEventListener('click', function(){ go('simple'); });
+  notifFun.addEventListener('click', function(){ go('home'); });
+  document.getElementById('t-close').addEventListener('click', function(){ if (mode === 'simple') closeOrLock(); else go('home'); });
   btnPrev.addEventListener('click', function(){
     var el = document.getElementById('scr-' + current);
     if (el.dataset.parent) return go(el.dataset.parent);
@@ -1189,8 +1274,9 @@ html.compact .ed-save{width:44px;height:44px}
   document.addEventListener('keydown', function(e){
     if (e.target.closest && e.target.closest('[role="tablist"]')) return;
     if (booth.onKey(e)) return;
-    if (current === null && (e.key === 'Enter' || e.key === ' ') && e.target === document.body){ e.preventDefault(); go('home'); }
+    if (current === null && (e.key === 'Enter' || e.key === ' ') && e.target === document.body){ e.preventDefault(); go('simple'); }
     if (current === null) return;
+    if (mode === 'simple'){ if (e.key === 'Escape') closeOrLock(); return; }
     if (current === 'home'){
       if (e.key === 'Escape') lockDevice();
       if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && !e.target.closest('input, .strip')) toPage(e.key === 'ArrowRight' ? 1 : 0, true);
